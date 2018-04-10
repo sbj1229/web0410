@@ -26,8 +26,27 @@ app.get('/template', (req, res) => {
   var obj1 = { name:req.query.name, age:req.query.age};
   console.log(req.body.name)
   res.send(tp1(obj1));
-
 });
+
+app.get('/rowcol', (req, res) => {
+  res.charset = 'UTF-8';
+  var checkbox = '<input name="checkbox" type="radio">';
+  var row = req.query.row;
+  var col = req.query.col;
+  var string = '';
+  string +='<form>';
+  for(var i=0; i<col;i++)
+  {
+    string += checkbox;
+  }
+  string +='</form>';
+  var result ='';
+  for(var i=0; i<row;i++)
+  {
+    result+=string;
+  }
+  res.send(result);
+} );
 
 
 app.listen(8080, () => console.log('Example app listening on port 8080!'));
