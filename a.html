@@ -1,0 +1,38 @@
+<html>
+<head>
+<style>
+input {padding: 0px; margin: 0px;}
+</style>
+</head>
+<body>
+<p>인터넷응용및실습 2018 봄학기 과제2 (손범준)</p>
+<input type="submit" id="addRow"
+       value="행 추가">
+<input type="submit" id="addCol"
+       value="열 추가">
+<!-- 과제2는 HTML은 그대로 두고 JavaScript만 수정하여
+     "열 추가"가 동작하도록 한다. (수업시간에 데모)
+-->
+
+<form class="row"><input type="checkbox"></form>
+
+<script>
+var addRow = document.querySelector("#addRow");
+var addCol = document.querySelector("#addCol");
+
+addRow.addEventListener('click', function() {
+  var form = document.querySelector(".row");
+  document.body.appendChild( form.cloneNode(true) );
+ // console.log(document.body);
+});
+// 열 추가 스크립트
+addCol.addEventListener('click', function(){
+	var form = document.querySelectorAll(".row"); //모든 .row를 배열 형태로 저장
+  //query Selector : 검색되는 첫 노드 SelectorAll : 검색되는 모든 노드를 배열로
+	var inputC = document.createElement('input'); //인풋 요소를 생성
+	inputC.type = 'checkbox';		//인풋 속성을 체크박스로 변경
+	for(i=0;i<form.length;i++){	//row의 갯수만큼 돌면서
+		form[i].appendChild(inputC.cloneNode(true));		//i번째 row에 인풋 체크박스 추가
+	}
+});
+</script>
